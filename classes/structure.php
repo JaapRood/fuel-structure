@@ -5,7 +5,7 @@
  * Structure is a way to manage your RESTful data representations
  *
  * @package		Structure
- * @version		1.0
+ * @version		0.5
  * @author		Jaap Rood
  * @license		MIT License
  * @copyright	2011 Jaap Rood
