@@ -38,7 +38,7 @@ class Structure {
      * @param	mixed	$data	data to be structurized
      */
     public function __construct($data = null) {
-		\Config::load('structure', true);
+		$load = \Config::load('structure', true);
 		
         $this->_data = $data;
     }
@@ -50,7 +50,7 @@ class Structure {
 	 * @return 	array	the restructured data
 	 */
 	public function to($template) {
-		$template_folder = \Config::get('structure.template_folder');
+		$template_folder = \Config::get('structure.templates_folder');
 		
 		$template_path = \Fuel::find_file($template_folder, $template);
 		
@@ -58,7 +58,9 @@ class Structure {
 			throw new \Fuel_Exception('The requested template could not be found: '. \Fuel::clean_path($file));
 		}
 		
-		return static::capture($template_file, $this->_data);
+		$data = static::capture($template_path, $this->_data);
+
+		return static::capture($template_path, $this->_data);
 	}
 	
 	
