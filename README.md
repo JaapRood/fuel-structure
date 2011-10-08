@@ -1,7 +1,7 @@
 #Not stable yet
 
 #Structure
-## a Fuel PHP package to structure your RESTful resources and keep them consistent (and structure any other data you'd like)
+## Structure is a FuelPHP package to manage your RESTful data representations
 
 * [By Jaap Rood](http://www.jaaprood.nl)
 
