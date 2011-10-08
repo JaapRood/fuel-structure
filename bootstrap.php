@@ -12,6 +12,7 @@
  * @link		http://github.com/JaapRood/fuel-structure
  */
 
+Autoloader::add_core_namespace('Structure');
 
 
 Autoloader::add_classes(array(

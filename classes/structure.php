@@ -84,4 +84,51 @@ class Structure {
 			throw new \Fuel_Exception($e->getMessage());
 		}
 	}
+	
+	/**
+	 * convert ORM models to arrays and unindex their arrays in order to create well formed
+	 * native JSON
+	 *
+	 * @param	mixed	$data	data that needs Orm Models converted to arrays
+	 */
+	public static function models_to_array($data) {
+		if (is_array($data)) { // if it's an array
+			if (array_shift(array_values($data)) instanceof \Orm\Model) { // if the first element is a Orm Model
+				$new_data = array();
+				
+				foreach ($data as $model) {
+					
+					$converted_properties = array();
+					foreach($model as $key => $property) { // for each property
+						$converted_properties[$key] = static::models_to_array($property); // could be an array of models
+					}
+					
+					$converted_model = $model->to_array();
+					
+					foreach ($converted_properties as $key => $property) {
+						$converted_model[$key] = $property;
+					}
+					
+					$new_data[] = $converted_model;
+				}
+				
+				$data = $new_data;
+			}
+		} elseif ($data instanceof \Orm\Model) {
+			$converted_properties = array();
+			foreach($data as $key => $property) { // for each property
+				$converted_properties[$key] = static::models_to_array($property); // could be an array of models
+			}
+			
+			$converted_model = $data->to_array();
+			
+			foreach ($converted_properties as $key => $property) {
+				$converted_model[$key] = $property;
+			}
+			
+			$data = $converted_model;
+		}
+		
+		return $data;
+	}
 }
