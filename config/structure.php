@@ -12,4 +12,6 @@
  * @link		http://github.com/JaapRood/fuel-structure
  */
 
-return array();
+return array(
+    'templates_folder' => 'views/',
+);
