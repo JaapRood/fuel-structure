@@ -1,5 +1,3 @@
-#Not stable yet
-
 #Structure
 ## Structure is a FuelPHP package to manage your RESTful data representations
 
