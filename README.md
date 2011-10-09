@@ -1,5 +1,5 @@
 #Structure
-## Structure is a FuelPHP package to manage your RESTful data representations
+### Structure is a FuelPHP package to manage your RESTful data representations
 
 * [By Jaap Rood](http://www.jaaprood.nl)
 
@@ -25,6 +25,7 @@ These template files can contain any logic you'd like. You can choose to complet
 ### Example: editing a user for use in an API
 
 The call
+
 ```php
 $user = array( // this could be anything, like a Model
   'id'        => 3,
@@ -37,6 +38,7 @@ $structured_data = Structure::factory(array('user' => $user))->to('api/user');
 ```
 
 The template
+
 ```php
 unset($user['password']);
 $user['link'] = Uri::create('api/users/'. $user['id']);
@@ -45,6 +47,7 @@ return $user;
 ```
 
 If you really start using this for alot of representations, making the output more explicit might be a good idea 
+
 ```php
 // this way you always have control over the data you output
 return array(
@@ -54,3 +57,19 @@ return array(
   'link'      => Uri::create('api/users/'. $user['id']);
 );
 ```
+
+### Models to array
+
+From working with a couple of Javascript Frameworks, I know that when using the normal Model->to_array() method creates associative arrays. These, however, will not create native JSON arrays but instead objects with numerical keys. Many Javascript frameworks don't play nice with this.
+
+In order to address this problem, and because I basically do it in this part of my Apps, I included a helper function to convert Models without using associative arrays (recursively).
+
+```php
+$user = Model_User::find('all');
+
+Structure::models_to_array($user);
+```
+
+## Helping out
+
+Please let me know about bugs, problems, issues, ideas, cool features, awesome places to get pasta, etc!
