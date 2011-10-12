@@ -40,6 +40,8 @@ class Structure {
     public function __construct($data = null) {
 		$load = \Config::load('structure', true);
 		
+		if (!is_array($data)) $data = array('data' => $data);
+		
         $this->_data = $data;
     }
     
