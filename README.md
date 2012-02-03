@@ -1,4 +1,4 @@
-# DEPRECATED! Changed to fuel-representation, as that makes more sense! 
+# DEPRECATED! Changed to [fuel-representation](https://github.com/JaapRood/fuel-representation), as that makes more sense!
 
 #Structure
 ### Structure is a FuelPHP package to manage your RESTful data representations
